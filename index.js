@@ -52,7 +52,6 @@ function is31Flavors(arr){
     }
 }
 
-console.log(is31Flavors(originalFlavors));
 
 /* Task 2: Corporate has come to you with an idea for a new flavor: Rainbow Sherbert! They think this will be a game changer. You need to modify the array to include this flavor. 
 
@@ -70,7 +69,6 @@ function addFlavor(arr, flavor){
     console.log(arr);
 }
 
-console.log(addFlavor(originalFlavors, "Rainbow Sherbert"));
 
 /* Task 3: Houston, we have a problem! There are now 32 flavors in the array! Your task is to remove an item from the end of the array. 
 
@@ -87,8 +85,6 @@ function removeLastFlavor(arr){
     console.log(arr);
 }
 
-console.log(removeLastFlavor(originalFlavors));
-
 /* Task 4: Write a function that returns a flavor at a given index in the array.
 
 Your function should accept:
@@ -104,7 +100,6 @@ function getFlavorByIndex(arr, [i]){
     }
 }
 
-console.log(originalFlavors[3]);
 
 /* Task 5: As corporate wants to add more and more flavors to their lineup, they've realized that they need to remove flavors based on flavor name, as opposed to just arbitrarily removing the first or last flavor. Your task is to get an index by flavor name, and remove that flavor from the array. 
 
@@ -129,7 +124,6 @@ function removeFlavorByName(arr, str){
     console.log(arr);
 }
 
-console.log(removeFlavorByName(originalFlavors,'Vanilla')); // <--- not working.. !!!!!!!!!!!!!!get index of str and then splice that index!!!!!!!!!!!!!!
 
 /* Task 6: With all of these changes going on, we don't want to lose track of the actual, original 31 flavors. Write a function called copy that makes a copy of the array. 
 
@@ -138,14 +132,11 @@ Your function should accept:
 2 arguments 1 for your new array and one for your original array
 
 and should return a new array that is identical to the old array. You can name the new array however you'd like. */
-let newArr = [];
-
-function copy(arr1, arr2){
-    arr2 = arr1.slice();
-    console.log(arr2);
+function copy(arr, newArr){
+    newArr = [...arr];
+    return newArr;
 }
 
-copy(originalFlavors, newArr);
 /* Task 7: July 7th is "World Chocolate Day" and Baskin Robins wants to create promotional materials highlighting all of their chocolate flavors. Write a function that checks every item in the array for a given string and returns a new array called filteredArray with just these values. Rather than hardcoding "chocolate" into your function, pass a string as a parameter, and invoke with the argument "chocolate". This way you could also filter for "Vanilla", "Sherbert", etc. when those holidays roll around.
 
 Your function should accept: 
@@ -171,8 +162,6 @@ let newArr = [];
     return newArr;
 }
 
-console.log(filterByWord(originalFlavors, 'Chocolate'));
-
 
 /* 🧁🍦🍨 STRETCH 🍨🍦🍫*/ 
 
@@ -186,13 +175,21 @@ and should return the average number of words per item in the array.
 
 For example, getAverageWordLength(originalFlavors) should return a number between 0 and 3. */
 
-function getAverageWordLength(/*code here*/){
 
-    /*code here*/
 
+function getAverageWordLength(arr){
+    let count = 0;
+    for(let i = 0; i < arr.length; i++) {
+        let arrItem = arr[i];
+        count = count + arrItem.split(' ').length + 1;
+      }
+      let wordAverage = count / (arr.length + 1);
+      return wordAverage;
 }
 
 
+
+console.log(getAverageWordLength(originalFlavors));
 /* STRETCH 2: Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. Write a function that will randomly select a total of 31 flavors from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors.
 
 Your function should accept 4 different arrays,
@@ -274,8 +271,16 @@ var regionalFlavors = ["Pink Bubblegum",
     "Chocolate Chocolate Chip Cheesecake",
     "Caramel 'n' Cookies"]
 
-function getRandomFlavors(/*code here*/){
-
-    /*code here*/
-
+function getRandomFlavors(arr1, arr2, arr3, arr4){
+    let flavorMatrix = [arr1, arr2, arr3, arr4];
+    let randomFlavors = [];
+    while (flavorMatrix.length < 31){
+        let row = Math.floor(Math.random() * flavorMatrix.length);
+        let column = Math.floor(Math.random() * flavorMatrix[row].length);
+        randomFlavors.push(flavorMatrix[row][column]);
+    }
+    return randomFlavors;
 }
+
+
+console.log(getRandomFlavors(originalFlavors,newFlavors, seasonalFlavors, regionalFlavors));
