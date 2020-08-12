@@ -188,8 +188,6 @@ function getAverageWordLength(arr){
 }
 
 
-
-console.log(getAverageWordLength(originalFlavors));
 /* STRETCH 2: Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. Write a function that will randomly select a total of 31 flavors from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors.
 
 Your function should accept 4 different arrays,
@@ -271,16 +269,15 @@ var regionalFlavors = ["Pink Bubblegum",
     "Chocolate Chocolate Chip Cheesecake",
     "Caramel 'n' Cookies"]
 
-function getRandomFlavors(arr1, arr2, arr3, arr4){
-    let flavorMatrix = [arr1, arr2, arr3, arr4];
-    let randomFlavors = [];
-    while (flavorMatrix.length < 31){
-        let row = Math.floor(Math.random() * flavorMatrix.length);
-        let column = Math.floor(Math.random() * flavorMatrix[row].length);
-        randomFlavors.push(flavorMatrix[row][column]);
-    }
-    return randomFlavors;
-}
-
-
-console.log(getRandomFlavors(originalFlavors,newFlavors, seasonalFlavors, regionalFlavors));
+    function getRandomFlavors(arr1, arr2, arr3, arr4) {
+        var flavorMatrix = [arr1, arr2, arr3, arr4]
+        var randomFlavors = []
+        while (randomFlavors.length < 31){
+          var row = Math.floor(Math.random() * flavorMatrix.length)
+          var col = Math.floor(Math.random() * flavorMatrix[row].length)
+          randomFlavors.push(flavorMatrix[row][col])
+        }
+      
+        return randomFlavors;
+      }
+      console.log(getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors,regionalFlavors));
